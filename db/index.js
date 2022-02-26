@@ -68,15 +68,13 @@ export function getGifts() {
 export async function exchangeGift(id, point, number) {
   console.log(point, number, id)
   // 首先查询总积分
-  const total = await getTotal();
+  const total = (await getTotal()).data.total;
   const sum = point * number;
   if (total < sum) {
     return false
   } else {
-    console.log(total, sum, "进行兑换")
     await updateTotal(total - sum);
     // 否则进行兑换
-    return false
+    return true
   }
-
 }
