@@ -12,6 +12,7 @@ Page({
   data: {
     gifts: [],
     index: [],
+    cached: false
   },
 
   onChange: function (event) {
@@ -25,19 +26,6 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -46,6 +34,16 @@ Page({
     this.getTabBar().setData({
       active: 1
     })
+    if (!this.data.cached) {
+      this.init()
+      this.setData({
+        cached: true
+      })
+    } else {
+      console.log("使用缓存数据")
+    }
+  },
+  init: function () {
     getGifts().then(res => {
       this.setData({
         gifts: res.data,
@@ -59,7 +57,6 @@ Page({
       })
     })
   },
-
   exchange(event) {
     const {
       index
@@ -95,4 +92,14 @@ Page({
       }
     })
   },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading();
+    this.init();
+    wx.showToast({
+      title: '加载数据完成',
+      icon: 'none'
+    })
+    wx.hideNavigationBarLoading(); //完成停止加载图标
+    wx.stopPullDownRefresh();
+  }
 })

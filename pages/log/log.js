@@ -13,10 +13,17 @@ Page({
     this.getTabBar().setData({
       active: 3
     })
-    this.getLog();
+    if (!this.data.cached) {
+      this.init()
+      this.setData({
+        cached: true
+      })
+    } else {
+      console.log("使用缓存数据")
+    }
   },
 
-  getLog() {
+  init() {
     getLog().then(res => {
       if (res.data.length == 0) {
         wx.showToast({
@@ -60,7 +67,7 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading();
-    this.getLog();
+    this.init();
     wx.showToast({
       title: '加载数据完成',
       icon: 'none'
