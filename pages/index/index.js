@@ -7,6 +7,24 @@ import {
 } from "../../db/index"
 
 Page({
+  handSetting: function () {
+    wx.requestSubscribeMessage({
+      tmplIds: ["dseD7bfr8zA344SHJDrEqBrXGr0A25cZY1ZscPZMr0E"],
+      success(res) {
+        console.log(res)
+      },
+      fail(err) {
+        console.log(err)
+      }
+    })
+  },
+  handleGetSettings: function () {
+    wx.getSetting({
+      withSubscriptions: true,
+    }).then(res => {
+      console.log(res.subscriptionsSetting)
+    })
+  },
   onShow: function () {
     this.getTabBar().setData({
       active: 0
@@ -19,6 +37,21 @@ Page({
     } else {
       console.log("使用缓存数据")
     }
+
+    // 测试云函数
+    wx.cloud.callFunction({
+      name: "sendMessage",
+      data: {
+        title: "测试",
+        point: 5,
+        remain: 0,
+        note: "使用该卡片可进行兑换礼物哦"
+      }
+    }).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
   },
   data: {
     reward: [],
@@ -50,6 +83,7 @@ Page({
     }
   },
   init: function () {
+    return
     // 加载奖励机制
     getReward().then(res => {
       this.setData({

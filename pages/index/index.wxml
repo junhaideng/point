@@ -10,4 +10,7 @@
       <text wx:else> {{item.point}} </text>
     </button>
   </view>
+  <button bindtap="handSetting">获取授权</button>
+  <button bindtap="handleGetSettings">读取授权</button>
+  
 </view>
