@@ -1,12 +1,17 @@
 <!--pages/rule/rule.wxml-->
-<view class="add">
-  <input model:value="{{rule}}" />
-  <view class="space"></view>
-  <button size="mini" >添加</button>
-</view>
-<view wx:for="{{rules}}" wx:key="_id" class="item">
-  <text class="content">{{item.content}} </text>
-  <button size="mini" class="button" bindtap="deleteRule" data-id="{{item._id}}">
-    <mp-icon type="field" icon="delete" color="#ff4d4f" size="{{25}}"></mp-icon>
-  </button>
-</view>
+<van-cell-group >
+  <van-field model:value="{{ content }}" type="textarea" autosize required clearable label="名称" placeholder="请输入新机制" />
+  <van-field model:value="{{ point }}" required type="digit" label="积分" placeholder="请输入积分分值" required border="{{ false }}" />
+
+  <van-radio-group model:value="{{ choice }}" required>
+    <van-cell-group>
+      <van-cell title="增加" clickable data-name="add" bind:click="onClick">
+        <van-radio slot="right-icon" name="add" />
+      </van-cell>
+      <van-cell title="减少" clickable data-name="reduce" bind:click="onClick">
+        <van-radio slot="right-icon" name="reduce" />
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+</van-cell-group>
+<van-button class="button" block type="primary" bindtap="submit">提交</van-button>

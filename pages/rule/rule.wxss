@@ -1,43 +1,5 @@
 /* pages/rule/rule.wxss */
-.add {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px;
+.form {
+  margin: 10px ;
 }
 
-.add input {
-  margin-right: 10px;
-  flex: 7;
-  border-width: 1px;
-  border-color: rebeccapurple;
-}
-
-.add button {
-  flex: 1;
-  background-color: #07c160;
-  color: #ffffff;
-  font-weight: 400;
-  font-size: 8px;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  border: solid 1px #d9d9d9;
-  margin: 10px;
-}
-
-.content {
-  flex: 5;
-  margin: 10px;
-}
-
-.button {
-  flex: 1;
-  margin: 10px;
-  font-weight: 400;
-  background-color: white;
-}

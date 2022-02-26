@@ -1,4 +1,7 @@
 <!--pages/log.wxml-->
-<view wx:for="{{log}}" wx:key="_id">
-  <text class="content">{{item.content}}</text>
+<view wx:if="{{steps.length==0}}">
+  <van-empty description="暂无日志" />
+</view>
+<view wx:else>
+  <van-steps desc-class="text" steps="{{ steps }}" direction="vertical" active="{{-1}}" />
 </view>

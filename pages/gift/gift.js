@@ -1,25 +1,28 @@
 // pages/gift/gift.js
+import {
+  getGifts,
+  exchangeGift,
+  addLog
+} from "../../db/index"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    gifts: [{
-      "_id": "fdas",
-      "content": "apple",
-      "point": 5, 
-      "count": 0 // 兑换次数
-    }]
+    gifts: [],
+    index: [],
   },
 
-  exchange: function(event){
+  onChange: function (event) {
     const {
-      _id, point 
+      index
     } = event.target.dataset;
-    console.log(_id, point)
-    // 进行数据库操作
-    
+    console.log(event, index)
+    this.data.index[index] = event.detail;
+    this.setData({
+      index: this.data.index
+    })
   },
 
   /**
@@ -40,41 +43,56 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getTabBar().setData({
+      active: 1
+    })
+    getGifts().then(res => {
+      this.setData({
+        gifts: res.data,
+        index: Array.from({
+          length: res.data.length
+        }, (v, k) => 1)
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '获取礼物清单失败: ' + err,
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  exchange(event) {
+    const {
+      index
+    } = event.target.dataset;
+    const number = this.data.index[index];
+    const gift = this.data.gifts[index];
+    wx.showModal({
+      content: `将兑换 ${number} 个 ${gift.title}, 需要 ${gift.point * number} 积分`,
+      success(res) {
+        if (res.confirm) {
+          exchangeGift(gift._id, gift.point, number).then(res => {
+            if (!res) {
+              wx.showToast({
+                title: '积分不足！',
+                icon: 'error'
+              })
+              return
+            }
+            wx.showToast({
+              title: '兑换成功',
+              icon: 'none'
+            })
+            addLog("reduce", point, "兑换: " + gift.title)
+          }).catch(err => {
+            wx.showToast({
+              title: '兑换失败: ' + err,
+              icon: 'none'
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

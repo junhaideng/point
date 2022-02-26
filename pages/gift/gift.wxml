@@ -1,6 +1,15 @@
 <!--pages/gift/gift.wxml-->
 <view wx:for="{{gifts}}" wx:key="_id" class="gift">
-  <text class="content">{{item.content}}</text>
-  <text class="point">{{item.point}}</text>
-  <button class="button" size="mini" bindtap="exchange" data-_id="{{item._id}}" data-point="{{item.point}}">兑换</button>
+  <van-card desc="{{item.desc}}" thumb="{{item.imageURL}}">
+    <view slot="title" class="title">
+      {{item.title}}
+    </view>
+    <view slot="price"> {{item.point}} 积分 </view>
+    <view slot="footer">
+      <view class="footer">
+        <van-stepper value="{{ 1 }}" bind:change="onChange" data-index="{{index}}"/>
+        <van-button class="button" size="small" type="primary" bindtap="exchange" data-index="{{index}}">兑换</van-button>
+      </view>
+    </view>
+  </van-card>
 </view>

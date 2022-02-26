@@ -2,3 +2,7 @@
 .content{
   margin: 20px;
 }
+
+.text{
+  font-size: 12px;
+}

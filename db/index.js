@@ -8,6 +8,18 @@ export function getReward() {
   }).get()
 }
 
+// 添加新机制
+export function addReward(content, point) {
+  return db.collection("reward").add({
+    data: {
+      content: content,
+      point: point,
+      valid: true,
+      created_time: new Date()
+    }
+  })
+}
+
 
 // ----------------------------------------
 // summary 相关操作
@@ -18,6 +30,7 @@ export function getTotal() {
 
 // 更新总分数
 export function updateTotal(total) {
+  console.log(total)
   return db.collection("summary").doc("total").update({
     data: {
       total: total
@@ -45,6 +58,25 @@ export function getLog() {
 
 // ----------------------------------------
 // gift 相关操作
-export function exchangeGift(id, point) {
+// 获取所有的可兑换礼物
+export function getGifts() {
+  return db.collection("gift").where({
+    valid: true
+  }).get()
+}
+
+export async function exchangeGift(id, point, number) {
+  console.log(point, number, id)
+  // 首先查询总积分
+  const total = await getTotal();
+  const sum = point * number;
+  if (total < sum) {
+    return false
+  } else {
+    console.log(total, sum, "进行兑换")
+    await updateTotal(total - sum);
+    // 否则进行兑换
+    return false
+  }
 
 }

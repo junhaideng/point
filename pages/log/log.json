@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-empty": "@vant/weapp/empty/index",
+    "van-steps": "@vant/weapp/steps/index"
+  },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"
 }

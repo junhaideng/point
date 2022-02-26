@@ -3,35 +3,17 @@ import {
   getLog
 } from "../../db/index";
 
-
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    log: []
+    steps: [],
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-    this.getLog()
+    this.getTabBar().setData({
+      active: 3
+    })
+    this.getLog();
   },
 
   getLog() {
@@ -41,32 +23,38 @@ Page({
           title: '暂无日志信息',
           icon: "none"
         })
+        this.setData({
+          steps: []
+        })
         return
       }
       this.setData({
-        log: res.data
+        steps: this.convert(res.data)
       })
     }).catch(err => {
       wx.showToast({
         title: '获取日志失败: ' + err,
       })
     })
-   
-  },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  convert: function (log) {
+    return log.map(item => {
+      if (item.point < 0) {
+        return {
+          text: item.content + " " + item.point,
+          desc: this.formatTime(item.created_time)
+        }
+      }
+      return {
+        text: item.content + " +" + item.point,
+        desc: this.formatTime(item.created_time)
+      }
+    })
   },
-
+  formatTime(date) {
+    return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -80,18 +68,4 @@ Page({
     wx.hideNavigationBarLoading(); //完成停止加载图标
     wx.stopPullDownRefresh();
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

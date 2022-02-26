@@ -1,8 +1,25 @@
 /* pages/gift/gift.wxss */
-.gift {
+.gift{
+  margin-bottom: 10px;
+}
+
+.title{
+  font-size: 18px;
+  font-weight: bold;
+}
+.footer {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  margin: 10px;
+}
+
+.footer van-stepper {
+  flex: 100;
+}
+
+.footer van-button {
+  margin-left: 5px;
+  flex: 1;
 }
 
 .content {

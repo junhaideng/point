@@ -7,7 +7,10 @@ import {
 } from "../../db/index"
 
 Page({
-  onShow() {
+  onShow: function () {
+    this.getTabBar().setData({
+      active: 0
+    })
     // 加载奖励机制
     getReward().then(res => {
       this.setData({
@@ -38,26 +41,23 @@ Page({
       point,
       content
     } = event.target.dataset;
+    const total = this.data.total + point;
     this.setData({
-      total: this.data.total + point
-    })
-    wx.showToast({
-      title: "成功添加 " + point + " 点积分"
+      total: total
     })
 
-    addLog("add", point, "因" + content + "添加 " + point + " 点积分");
-    updateTotal(this.data.total + point);
+    if (point > 0) {
+      wx.showToast({
+        title: "成功添加积分"
+      })
+      addLog("add", point, content);
+      updateTotal(total);
+    } else {
+      wx.showToast({
+        title: "成功减去积分"
+      })
+      addLog("reduce", point, content);
+      updateTotal(total );
+    }
   },
-  reducePoint: function (event) {
-    const point = event.target.dataset.point
-
-    this.setData({
-      total: this.data.total - point
-    })
-    wx.showToast({
-      title: "成功减去 " + point + " 分"
-    })
-    addLog("reduce", point, "因" + content + "减去 " + point + " 点积分");
-    updateTotal(this.data.total - point);
-  }
 })

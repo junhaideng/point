@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/log/log",
+    "pages/rule/rule",
     "pages/gift/gift",
-    "pages/rule/rule"
+    "pages/log/log"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,36 +11,26 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "useExtendedLib": {
-    "weui": true
-  },
+  "lazyCodeLoading": "requiredComponents",
   "tabBar": {
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home.png"
-      },
-      {
-        "pagePath": "pages/log/log",
-        "text": "日志",
-        "iconPath": "images/log.png",
-        "selectedIconPath": "images/log.png"
-      },
-      {
-        "pagePath": "pages/rule/rule",
-        "text": "规则",
-        "iconPath": "images/rule.png",
-        "selectedIconPath": "images/rule.png"
+        "text": "首页"
       },
       {
         "pagePath": "pages/gift/gift",
-        "text": "兑换",
-        "iconPath": "images/gift.png",
-        "selectedIconPath": "images/gift_.png"
+        "text": "兑换"
+      },
+      {
+        "pagePath": "pages/rule/rule",
+        "text": "规则"
+      },
+      {
+        "pagePath": "pages/log/log",
+        "text": "历史"
       }
     ],
     "selectedColor": "#69c0ff",
