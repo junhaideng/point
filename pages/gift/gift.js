@@ -70,7 +70,7 @@ Page({
           exchangeGift(gift._id, gift.point, number).then(res => {
             if (!res) {
               wx.showToast({
-                title: '积分不足！',
+                title: '积分不足',
                 icon: 'error'
               })
               return
@@ -79,7 +79,7 @@ Page({
               title: '兑换成功',
               icon: 'none'
             })
-            addLog("reduce", point, "兑换: " + gift.title)
+            addLog("reduce", gift.point, "兑换: " + gift.title)
           }).catch(err => {
             wx.showToast({
               title: '兑换失败: ' + err,
