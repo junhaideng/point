@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="total">
+    <text>总积分：{{total}}</text>
+  </view>
+  <view wx:for="{{reward}}" wx:key="_id" class="item">
+    <text class="content">{{item.content}} </text>
+    <button size="mini" class="button" bindtap="addPoint" data-content="{{item.content}}" data-point="{{item.point}}">
+      <text wx:if="{{item.point >0}}"> +{{item.point}} </text>
+      <text wx:else> {{item.point}} </text>
+    </button>
+  </view>
+</view>

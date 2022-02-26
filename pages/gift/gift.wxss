@@ -1,0 +1,19 @@
+/* pages/gift/gift.wxss */
+.gift {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.content {
+  flex: 5;
+}
+
+.point {
+  flex: 1
+}
+
+.button {
+  flex: 1;
+  font-weight: 400;
+}

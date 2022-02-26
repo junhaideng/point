@@ -1,0 +1,4 @@
+/* pages/log.wxss */
+.content{
+  margin: 20px;
+}

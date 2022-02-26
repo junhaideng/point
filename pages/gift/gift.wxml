@@ -1,0 +1,6 @@
+<!--pages/gift/gift.wxml-->
+<view wx:for="{{gifts}}" wx:key="_id" class="gift">
+  <text class="content">{{item.content}}</text>
+  <text class="point">{{item.point}}</text>
+  <button class="button" size="mini" bindtap="exchange" data-_id="{{item._id}}" data-point="{{item.point}}">兑换</button>
+</view>

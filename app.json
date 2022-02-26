@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/log/log",
+    "pages/gift/gift",
+    "pages/rule/rule"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home.png"
+      },
+      {
+        "pagePath": "pages/log/log",
+        "text": "日志",
+        "iconPath": "images/log.png",
+        "selectedIconPath": "images/log.png"
+      },
+      {
+        "pagePath": "pages/rule/rule",
+        "text": "规则",
+        "iconPath": "images/rule.png",
+        "selectedIconPath": "images/rule.png"
+      },
+      {
+        "pagePath": "pages/gift/gift",
+        "text": "兑换",
+        "iconPath": "images/gift.png",
+        "selectedIconPath": "images/gift_.png"
+      }
+    ],
+    "selectedColor": "#69c0ff",
+    "borderStyle": "black"
+  }
+}

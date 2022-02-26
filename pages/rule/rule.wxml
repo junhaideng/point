@@ -1,0 +1,12 @@
+<!--pages/rule/rule.wxml-->
+<view class="add">
+  <input model:value="{{rule}}" />
+  <view class="space"></view>
+  <button size="mini" >添加</button>
+</view>
+<view wx:for="{{rules}}" wx:key="_id" class="item">
+  <text class="content">{{item.content}} </text>
+  <button size="mini" class="button" bindtap="deleteRule" data-id="{{item._id}}">
+    <mp-icon type="field" icon="delete" color="#ff4d4f" size="{{25}}"></mp-icon>
+  </button>
+</view>

@@ -1,0 +1,4 @@
+<!--pages/log.wxml-->
+<view wx:for="{{log}}" wx:key="_id">
+  <text class="content">{{item.content}}</text>
+</view>

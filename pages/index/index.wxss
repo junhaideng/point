@@ -1,0 +1,22 @@
+/**index.wxss**/
+.total{
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.item{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content{
+  flex: 5;
+  margin: 10px;
+}
+.button{
+  flex: 1;
+  margin: 10px;
+}
