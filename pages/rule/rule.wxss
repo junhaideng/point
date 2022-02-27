@@ -6,3 +6,7 @@
 .button {
   margin-top: 20px;
 }
+
+.choice {
+  height: 30px;
+}

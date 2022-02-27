@@ -1,7 +1,7 @@
 <!--pages/rule/rule.wxml-->
 <van-cell-group>
-  <van-field model:value="{{ content }}" type="textarea" autosize required clearable label="名称" placeholder="请输入新机制" />
-  <van-field model:value="{{ point }}" required type="number" label="积分" placeholder="请输入积分分值" required border="{{ false }}" />
+  <van-field model:value="{{ content }}" type="textarea" autosize required clearable label="名称" placeholder="请输入新规则" />
+  <van-field model:value="{{ point }}" required type="number" label="积分" placeholder="请输入积分分值" />
 
   <van-field required label="类型" label-class="choice">
     <van-radio-group model:value="{{ choice }}"  direction="horizontal" slot="input">

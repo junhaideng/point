@@ -2,7 +2,7 @@
 import {
   getGifts,
   exchangeGift,
-  addLog
+  removeGifts
 } from "../../db/index"
 Page({
 
@@ -13,8 +13,8 @@ Page({
     gifts: [],
     index: [],
     cached: false,
-    hasMore: true, 
-    page: 0 
+    hasMore: true,
+    page: 0
   },
 
   onChange: function (event) {
@@ -46,6 +46,7 @@ Page({
     }
   },
   init: function () {
+
     getGifts().then(res => {
       this.setData({
         gifts: res.data,
@@ -71,7 +72,10 @@ Page({
       success(res) {
         if (res.confirm) {
           exchangeGift(gift._id, gift.point, number, gift.title).then(res => {
-            const {flag, total} = res 
+            const {
+              flag,
+              total
+            } = res
             if (!flag) {
               wx.showToast({
                 title: '积分不足',
@@ -107,6 +111,41 @@ Page({
         }
       }
     })
+  },
+
+  onClick: function (event) {
+    const that = this;
+    const position = event.detail;
+    const {
+      id,
+      index
+    } = event.target.dataset;
+    if (position == "right"){
+        wx.showModal({
+          content: '确定删除该礼物?',
+          success(res) {
+            if (res.confirm) {
+              removeGifts(id).then(res => {
+                let gift = that.data.gifts;
+                gift.splice(index, 1)
+                that.setData({
+                  gifts: gift
+                })
+                wx.showToast({
+                  title: '删除成功',
+                })
+              }).catch(err => {
+                wx.showToast({
+                  title: '删除失败',
+                  icon: 'none'
+                })
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+    }
   },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading();

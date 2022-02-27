@@ -34,3 +34,14 @@
   flex: 1;
   font-weight: 400;
 }
+
+.van-swipe-cell__right {
+  display: flex;
+  width: 65px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ee0a24;
+}

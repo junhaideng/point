@@ -1,15 +1,24 @@
-<!--pages/gift/gift.wxml-->
-<view wx:for="{{gifts}}" wx:key="_id" class="gift">
-  <van-card desc="{{item.desc}}" thumb="{{item.imageURL}}">
-    <view slot="title" class="title">
-      {{item.title}}
-    </view>
-    <view slot="price"> {{item.point}} 积分 </view>
-    <view slot="footer">
-      <view class="footer">
-        <van-stepper value="{{ 1 }}" bind:change="onChange" data-index="{{index}}"/>
-        <van-button class="button" size="small" type="primary" bindtap="exchange" data-index="{{index}}">兑换</van-button>
+<view wx:if="{{gifts.length==0}}">
+  <van-empty description="暂无可兑换的礼物" />
+</view>
+<view wx:else>
+  <view wx:for="{{gifts}}" wx:key="_id" class="gift">
+    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0 }}" data-id="{{item._id}}" bind:click="onClick" data-index="{{index}}" data-id="{{item._id}}" data-point="{{item.point}}" data-content="{{item.content}}" data-index="{{index}}">
+      <van-card desc="{{item.desc}}" thumb="{{item.imageURL}}">
+        <view slot="title" class="title">
+          {{item.title}}
+        </view>
+        <view slot="price"> {{item.point}} 积分 </view>
+        <view slot="footer">
+          <view class="footer">
+            <van-stepper value="{{ 1 }}" bind:change="onChange" data-index="{{index}}" />
+            <van-button class="button" size="small" type="primary" bindtap="exchange" data-index="{{index}}">兑换</van-button>
+          </view>
+        </view>
+      </van-card>
+      <view slot="right" class="van-swipe-cell__right">
+        删除
       </view>
-    </view>
-  </van-card>
+    </van-swipe-cell>
+  </view>
 </view>

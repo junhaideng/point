@@ -3,7 +3,10 @@
   <view class="total">
     <text>总积分：{{total}}</text>
   </view>
-  <view class="items">
+  <view wx:if="{{reward.length==0}}">
+    <van-empty description="暂无积分机制，请到设置中添加" />
+  </view>
+  <view wx:else class="items">
     <view wx:for="{{reward}}" wx:key="_id" class="item">
       <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0 }}" bind:click="onClick" data-id="{{item._id}}" data-point="{{item.point}}" data-content="{{item.content}}" data-index="{{index}}">
         <van-cell-group>

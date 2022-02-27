@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/rule/rule",
+    "pages/gift/gift",
     "pages/index/index",
     "pages/present/present",
+    "pages/rule/rule",
     "pages/log/log",
-    "pages/gift/gift",
     "pages/settings/settings",
     "pages/notice/notice"
   ],

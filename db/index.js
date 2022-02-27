@@ -82,6 +82,8 @@ export function getGifts(page = 0) {
     .limit(NumberPerPage)
     .get()
 }
+
+// 添加兑换礼物
 export function addGifts(title, desc, imageURL, point) {
   return db.collection("gift")
     .add({
@@ -90,12 +92,16 @@ export function addGifts(title, desc, imageURL, point) {
         desc,
         imageURL,
         point,
-        valid: true ,
+        valid: true,
         count: 0,
       }
     })
 }
 
+// 删除兑换礼物
+export function removeGifts(id) {
+  return db.collection("gift").doc(id).remove()
+}
 
 export function increaseGiftCount(id, count = 1) {
   return db.collection("gift").doc(id).update({
