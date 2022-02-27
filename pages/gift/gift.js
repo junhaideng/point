@@ -12,7 +12,9 @@ Page({
   data: {
     gifts: [],
     index: [],
-    cached: false
+    cached: false,
+    hasMore: true, 
+    page: 0 
   },
 
   onChange: function (event) {
@@ -49,7 +51,8 @@ Page({
         gifts: res.data,
         index: Array.from({
           length: res.data.length
-        }, (v, k) => 1)
+        }, (v, k) => 1),
+        page: 1
       })
     }).catch(err => {
       wx.showToast({
@@ -67,8 +70,9 @@ Page({
       content: `将兑换 ${number} 个 ${gift.title}, 需要 ${gift.point * number} 积分`,
       success(res) {
         if (res.confirm) {
-          exchangeGift(gift._id, gift.point, number).then(res => {
-            if (!res) {
+          exchangeGift(gift._id, gift.point, number, gift.title).then(res => {
+            const {flag, total} = res 
+            if (!flag) {
               wx.showToast({
                 title: '积分不足',
                 icon: 'error'
@@ -79,7 +83,19 @@ Page({
               title: '兑换成功',
               icon: 'none'
             })
-            addLog("reduce", gift.point, "兑换: " + gift.title)
+            wx.cloud.callFunction({
+              name: "sendMessage",
+              data: {
+                title: gift.title,
+                point: gift.point * number,
+                remain: total,
+                note: "使用该卡片可进行兑换礼物哦"
+              }
+            }).then(res => {
+              console.log(res)
+            }).catch(err => {
+              console.log(err)
+            })
           }).catch(err => {
             wx.showToast({
               title: '兑换失败: ' + err,
@@ -101,5 +117,40 @@ Page({
     })
     wx.hideNavigationBarLoading(); //完成停止加载图标
     wx.stopPullDownRefresh();
+  },
+  onReachBottom: function () {
+    console.log("到底")
+    const {
+      hasMore,
+      page
+    } = this.data;
+
+    if (hasMore) {
+      wx.showLoading({
+        "title": "获取数据中"
+      })
+      getGifts(page).then(res => {
+        if (res.data.length == 0) {
+          wx.showToast({
+            title: '暂无更多数据',
+            icon: 'none'
+          })
+          this.setData({
+            hasMore: false
+          })
+          return
+        }
+        this.setData({
+          gifts: this.data.gifts.concat(res.data),
+          page: page + 1
+        })
+        wx.hideLoading()
+      }).catch(err => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '获取数据失败: ' + err,
+        })
+      })
+    }
   }
 })

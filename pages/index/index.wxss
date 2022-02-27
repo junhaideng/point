@@ -1,22 +1,35 @@
 /**index.wxss**/
-.total{
+.container {
+  background-color: #fcfcfc;
+  height: 100%;
+}
+
+.total {
   font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.item{
+  position: fixed;
+  top: 0;
+  text-align: center;
   width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
+  background-color: #ffffff;
+  z-index: 10000;
+  margin-bottom: 5px;
 }
 
-.content{
-  flex: 5;
-  margin: 10px;
+.items {
+  margin-top: 40px;
 }
-.button{
-  flex: 1;
-  margin: 10px;
+.item {
+  width: 100%;
+}
+
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  height: 44px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  background-color: #ee0a24;
 }

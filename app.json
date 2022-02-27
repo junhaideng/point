@@ -1,10 +1,14 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/rule/rule",
+    "pages/index/index",
+    "pages/present/present",
+    "pages/log/log",
     "pages/gift/gift",
-    "pages/log/log"
+    "pages/settings/settings",
+    "pages/notice/notice"
   ],
+  
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -25,12 +29,12 @@
         "text": "兑换"
       },
       {
-        "pagePath": "pages/rule/rule",
-        "text": "规则"
-      },
-      {
         "pagePath": "pages/log/log",
         "text": "历史"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "规则"
       }
     ],
     "selectedColor": "#69c0ff",

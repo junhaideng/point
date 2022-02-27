@@ -1,17 +1,13 @@
 <!--pages/rule/rule.wxml-->
-<van-cell-group >
+<van-cell-group>
   <van-field model:value="{{ content }}" type="textarea" autosize required clearable label="名称" placeholder="请输入新机制" />
-  <van-field model:value="{{ point }}" required type="digit" label="积分" placeholder="请输入积分分值" required border="{{ false }}" />
+  <van-field model:value="{{ point }}" required type="number" label="积分" placeholder="请输入积分分值" required border="{{ false }}" />
 
-  <van-radio-group model:value="{{ choice }}" required>
-    <van-cell-group>
-      <van-cell title="增加" clickable data-name="add" bind:click="onClick">
-        <van-radio slot="right-icon" name="add" />
-      </van-cell>
-      <van-cell title="减少" clickable data-name="reduce" bind:click="onClick">
-        <van-radio slot="right-icon" name="reduce" />
-      </van-cell>
-    </van-cell-group>
-  </van-radio-group>
+  <van-field required label="类型" label-class="choice">
+    <van-radio-group model:value="{{ choice }}"  direction="horizontal" slot="input">
+      <van-radio name="add">增加</van-radio>
+      <van-radio name="reduce">减少</van-radio>
+    </van-radio-group>
+  </van-field>
 </van-cell-group>
 <van-button class="button" block type="primary" bindtap="submit">提交</van-button>

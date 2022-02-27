@@ -1,8 +1,10 @@
 {
   "usingComponents": {
     "van-empty": "@vant/weapp/empty/index",
-    "van-steps": "@vant/weapp/steps/index"
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   },
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 100
 }

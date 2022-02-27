@@ -1,0 +1,13 @@
+<form>
+  <van-cell-group>
+    <van-field label="名称" type="textarea" show-word-limit maxlength="{{49}}" required clearable model:value="{{ title }}" placeholder="请输入名称" autosize />
+    <van-field label="描述" type="textarea" show-word-limit maxlength="{{49}}" required clearable model:value="{{ desc }}" placeholder="相关描述" autosize />
+    <van-field model:value="{{ point }}" required type="number" label="积分" placeholder="请输入积分分值" required />
+    <van-field label="图片" label-class="image" required >
+      <van-uploader class="uploader" slot="input" file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" deletable="{{ true }}" bind:delete="deleteFile" />
+    </van-field>
+  </van-cell-group>
+</form>
+<view class="button">
+  <van-button type="primary" block bindtap="submit">添加</van-button>
+</view>

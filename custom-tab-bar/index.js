@@ -14,12 +14,11 @@ Component({
         text: "兑换",
       },
       {
-        url: "/pages/rule/rule",
-        text: "规则",
-      },
-      {
         url: "/pages/log/log",
         text: "日志",
+      }, {
+        url: "/pages/settings/settings",
+        text: "规则",
       }
     ]
   },
@@ -29,7 +28,6 @@ Component({
       wx.switchTab({
         url: this.data.list[event.detail].url
       });
-    },
-
+    }
   },
 })
