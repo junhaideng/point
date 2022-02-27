@@ -8,6 +8,7 @@ exports.main = async (event, context) => {
   const {
     title, point, remain, note
   } = event; 
+  console.log(context)
   
   const wxContext = cloud.getWXContext()
 

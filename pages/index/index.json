@@ -1,6 +1,11 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-button": "@vant/weapp/button/index"
+  },
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
-
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 100
 }

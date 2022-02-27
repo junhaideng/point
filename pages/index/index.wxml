@@ -3,14 +3,16 @@
   <view class="total">
     <text>总积分：{{total}}</text>
   </view>
-  <view wx:for="{{reward}}" wx:key="_id" class="item">
-    <text class="content">{{item.content}} </text>
-    <button size="mini" class="button" bindtap="addPoint" data-content="{{item.content}}" data-point="{{item.point}}">
-      <text wx:if="{{item.point >0}}"> +{{item.point}} </text>
-      <text wx:else> {{item.point}} </text>
-    </button>
+  <view class="items">
+    <view wx:for="{{reward}}" wx:key="_id" class="item">
+      <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0 }}" bind:click="onClick" data-id="{{item._id}}" data-point="{{item.point}}" data-content="{{item.content}}" data-index="{{index}}">
+        <van-cell-group>
+          <van-cell title="{{item.content}}" value="{{item.point}}" />
+        </van-cell-group>
+        <view slot="right" class="van-swipe-cell__right">
+          删除
+        </view>
+      </van-swipe-cell>
+    </view>
   </view>
-  <button bindtap="handSetting">获取授权</button>
-  <button bindtap="handleGetSettings">读取授权</button>
-  
 </view>

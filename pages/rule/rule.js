@@ -1,7 +1,9 @@
 // pages/rule/rule.js
 import {
   addReward
-} from "../../db/index"
+} from "../../db/index";
+
+
 Page({
   data: {
     content: "",
@@ -9,28 +11,20 @@ Page({
     choice: "add"
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.getTabBar().setData({
-      active: 2
-    })
-  },
-
-  onClick: function (event) {
-    const choice = event.target.dataset.name;
-    this.setData({
-      choice: choice
-    })
-  },
-
   submit() {
     const {
       content,
-      point,
+      point: p,
       choice
     } = this.data;
+    if (p && p.length == 0) {
+      wx.showToast({
+        title: '请输入积分',
+        icon: 'error'
+      })
+      return
+    }
+    let point = Number.parseInt(p)
     if (content.length == 0) {
       wx.showToast({
         title: '请输入积分机制',
@@ -38,7 +32,6 @@ Page({
       })
       return
     }
-
     if (choice == "add") {} else if (choice == "reduce") {
       point = -point
     } else {
@@ -63,6 +56,5 @@ Page({
         icon: "none"
       })
     })
-
   }
 })

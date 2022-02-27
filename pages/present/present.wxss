@@ -1,0 +1,13 @@
+.image{
+  height: 100px;
+}
+
+.uploader{
+  margin-top: 80px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 5px;
+  text-align: center;
+}

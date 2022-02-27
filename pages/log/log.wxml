@@ -3,5 +3,16 @@
   <van-empty description="暂无日志" />
 </view>
 <view wx:else>
-  <van-steps desc-class="text" steps="{{ steps }}" direction="vertical" active="{{-1}}" />
+  <van-cell-group>
+    <van-cell wx:for="{{log}}" wx:key="_id" label="{{item.content}}" value="{{item.created_time}}">
+      <view slot="title">
+        <view wx:if="{{item.title=='add'}}">
+          收入 + {{item.point}}
+        </view>
+        <view wx:else>
+          支出 {{item.point}}
+        </view>
+      </view>
+    </van-cell>
+  </van-cell-group>
 </view>

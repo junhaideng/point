@@ -1,6 +1,6 @@
 <van-tabbar active="{{ active }}" bind:change="onChange">
   <van-tabbar-item icon="home-o">首页</van-tabbar-item>
   <van-tabbar-item icon="shop-o">兑换</van-tabbar-item>
-  <van-tabbar-item icon="setting-o">规则</van-tabbar-item>
   <van-tabbar-item icon="clock-o">历史</van-tabbar-item>
+  <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
 </van-tabbar>

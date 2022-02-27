@@ -1,0 +1,4 @@
+<!--pages/settings/settings.wxml-->
+<van-cell is-link title="通知授权" link-type="navigateTo" url="/pages/notice/notice" />
+<van-cell is-link title="规则添加" link-type="navigateTo" url="/pages/rule/rule" />
+<van-cell is-link title="礼物添加" link-type="navigateTo" url="/pages/present/present" />

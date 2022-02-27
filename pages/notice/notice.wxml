@@ -1,0 +1,2 @@
+<!--pages/notice/notice.wxml-->
+<button bindtap="subscribeMessage">订阅消息</button>
