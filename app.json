@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/gift/gift",
     "pages/index/index",
+    "pages/gift/gift",
     "pages/present/present",
     "pages/rule/rule",
     "pages/log/log",

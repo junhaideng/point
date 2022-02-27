@@ -55,7 +55,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.17.0",
   "appid": "wx8d1b88416de72214",
-  "projectname": "积分",
+  "projectname": "point",
   "debugOptions": {
     "hidedInDevtools": []
   },

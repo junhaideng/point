@@ -3,7 +3,7 @@
 </view>
 <view wx:else>
   <view wx:for="{{gifts}}" wx:key="_id" class="gift">
-    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0 }}" data-id="{{item._id}}" bind:click="onClick" data-index="{{index}}" data-id="{{item._id}}" data-point="{{item.point}}" data-content="{{item.content}}" data-index="{{index}}">
+    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0 }}" data-id="{{item._id}}" bind:click="onClick" data-index="{{index}}" data-id="{{item._id}}" data-point="{{item.point}}" data-content="{{item.content}}" data-index="{{index}}" data-fileid="{{item.imageURL}}">
       <van-card desc="{{item.desc}}" thumb="{{item.imageURL}}">
         <view slot="title" class="title">
           {{item.title}}

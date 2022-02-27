@@ -1,5 +1,5 @@
 <!--pages/log.wxml-->
-<view wx:if="{{steps.length==0}}">
+<view wx:if="{{log.length==0}}">
   <van-empty description="暂无日志" />
 </view>
 <view wx:else>

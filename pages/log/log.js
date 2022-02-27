@@ -47,6 +47,7 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '获取日志失败: ' + err,
+        icon: "none"
       })
     })
 
@@ -130,6 +131,7 @@ Page({
         wx.hideLoading()
         wx.showToast({
           title: '获取日志失败: ' + err,
+          icon: "none"
         })
       })
     }

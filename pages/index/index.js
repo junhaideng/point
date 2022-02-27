@@ -70,6 +70,7 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '获取总积分失败: ' + err,
+        icon: "none"
       })
     })
   },
@@ -174,6 +175,7 @@ Page({
         wx.hideLoading()
         wx.showToast({
           title: '获取数据失败: ' + err,
+          icon: "none"
         })
       })
     }

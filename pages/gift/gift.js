@@ -58,6 +58,7 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '获取礼物清单失败: ' + err,
+        icon: 'none'
       })
     })
   },
@@ -118,14 +119,15 @@ Page({
     const position = event.detail;
     const {
       id,
-      index
+      index,
+      fileid 
     } = event.target.dataset;
     if (position == "right"){
         wx.showModal({
           content: '确定删除该礼物?',
           success(res) {
             if (res.confirm) {
-              removeGifts(id).then(res => {
+              removeGifts(id, fileid).then(res => {
                 let gift = that.data.gifts;
                 gift.splice(index, 1)
                 that.setData({
@@ -188,6 +190,7 @@ Page({
         wx.hideLoading()
         wx.showToast({
           title: '获取数据失败: ' + err,
+          icon: "none"
         })
       })
     }

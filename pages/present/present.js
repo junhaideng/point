@@ -30,9 +30,11 @@ Page({
     const {
       fileList,
       title,
-      point,
+      point: p,
       desc
     } = this.data;
+    let point = Number.parseInt(p)
+
     if(title.length == 0){
       wx.showToast({
         title: '请输入名称',
@@ -63,7 +65,6 @@ Page({
       return 
     }
 
-
     if (!fileList.length) {
       wx.showToast({
         title: '请选择图片',
@@ -74,7 +75,7 @@ Page({
         .then(data => {
           addGifts(title, desc, data.fileID, point).then(res => {
             wx.showToast({
-              title: '上传成功',
+              title: '添加成功',
               icon: 'none'
             });
             this.setData({
@@ -83,12 +84,12 @@ Page({
               desc: "",
               point: null,
             })
+            console.log(data)
           })
-          console.log(data)
         })
         .catch(e => {
           wx.showToast({
-            title: '上传失败',
+            title: '添加失败',
             icon: 'none'
           });
           console.log(e);
@@ -107,9 +108,6 @@ Page({
     });
   },
   submit: function () {
-    console.log(this.data)
-    let p = Number.parseInt(this.data.point)
-    console.log(p)
     this.uploadToCloud()
   }
 })

@@ -99,8 +99,15 @@ export function addGifts(title, desc, imageURL, point) {
 }
 
 // 删除兑换礼物
-export function removeGifts(id) {
-  return db.collection("gift").doc(id).remove()
+export async function removeGifts(id, fileid) {
+  try {
+    await wx.cloud.deleteFile({fileList: [fileid]})
+    await db.collection("gift").doc(id).remove()
+    return true
+  } catch (err) {
+    console.log(err)
+    return false
+  }
 }
 
 export function increaseGiftCount(id, count = 1) {
