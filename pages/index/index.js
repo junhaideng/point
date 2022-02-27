@@ -36,7 +36,7 @@ Page({
       total: total
     })
 
-    if (point > 0) {
+    if (point >= 0) {
       wx.showToast({
         title: "成功添加积分"
       })
