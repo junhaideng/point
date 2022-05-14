@@ -103,7 +103,7 @@ Page({
     } = chooseResult;
     let tmp = url.split("/")
     return wx.cloud.uploadFile({
-      cloudPath: "cms/" + tmp[tmp.length - 1],
+      cloudPath: "point/" + tmp[tmp.length - 1],
       filePath: chooseResult.url
     });
   },

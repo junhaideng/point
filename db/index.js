@@ -28,20 +28,37 @@ export function addReward(content, point) {
 
 // 删除
 export function removeReward(id) {
-  return db.collection("reward").doc(id).remove()
+  return db.collection("reward").doc(id).update({
+    data: {
+      valid: false
+    }
+  })
 }
 
 // ----------------------------------------
 // summary 相关操作
+export function addTotal() {
+  return db.collection("summary").add({
+    data: {
+      valid: true,
+      created_time: new Date(), 
+      total: 0,
+    }
+  })
+}
+
 // 获取总分数
 export function getTotal() {
-  return db.collection("summary").doc("total").get()
+  return db.collection("summary").where({
+    valid: true
+  }).limit(1).get()
 }
 
 // 更新总分数
 export function updateTotal(total) {
-  console.log(total)
-  return db.collection("summary").doc("total").update({
+  return db.collection("summary").where({
+    valid: true 
+  }).update({
     data: {
       total: total
     }
@@ -101,7 +118,9 @@ export function addGifts(title, desc, imageURL, point) {
 // 删除兑换礼物
 export async function removeGifts(id, fileid) {
   try {
-    await wx.cloud.deleteFile({fileList: [fileid]})
+    await wx.cloud.deleteFile({
+      fileList: [fileid]
+    })
     await db.collection("gift").doc(id).remove()
     return true
   } catch (err) {
@@ -120,19 +139,25 @@ export function increaseGiftCount(id, count = 1) {
 
 export async function exchangeGift(id, point, number, title) {
   // 首先查询总积分
-  const total = (await getTotal()).data.total;
+  const total_list = (await getTotal()).data;
+  let total = 0 ; 
+  if (total_list.length == 0){
+    addTotal();
+  }else{
+    total = total_list[0].total;
+  }
   const sum = point * number;
   const res = {
     flag: false,
     total: total
   }
+  // 进行兑换
   if (total >= sum) {
     await updateTotal(total - sum);
     await increaseGiftCount(id, number)
     addLog("reduce", sum, "兑换: " + title)
     res.flag = true
     res.total = total - sum
-    // 否则进行兑换
   }
   return res
 }

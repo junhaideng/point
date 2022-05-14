@@ -6,8 +6,8 @@
   <van-cell-group>
     <van-cell wx:for="{{log}}" wx:key="_id" label="{{item.content}}" value="{{item.created_time}}">
       <view slot="title">
-        <view wx:if="{{item.title=='add'}}">
-          收入 + {{item.point}}
+        <view wx:if="{{item.type=='add'}}">
+          收入 +{{item.point}}
         </view>
         <view wx:else>
           支出 {{item.point}}

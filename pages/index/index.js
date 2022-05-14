@@ -4,7 +4,8 @@ import {
   removeReward,
   getTotal,
   addLog,
-  updateTotal
+  updateTotal,
+  addTotal,
 } from "../../db/index"
 
 Page({
@@ -20,7 +21,6 @@ Page({
     } else {
       console.log("使用缓存数据")
     }
-
   },
   data: {
     reward: [],
@@ -41,14 +41,13 @@ Page({
         title: "成功添加积分"
       })
       addLog("add", point, content);
-      updateTotal(total);
     } else {
       wx.showToast({
         title: "成功减去积分"
       })
       addLog("reduce", point, content);
-      updateTotal(total);
     }
+    updateTotal(total);
   },
   init: function () {
     // 加载奖励机制
@@ -64,8 +63,17 @@ Page({
     })
 
     getTotal().then(res => {
+      let total = 0 ; 
+      const total_list = res.data;
+      if(total_list.length ==0){
+        // 添加一个 total 记录用来查询
+        addTotal();
+        total = 0 ;
+      }else{
+        total = total_list[0].total
+      }
       this.setData({
-        total: res.data.total
+        total
       })
     }).catch(err => {
       wx.showToast({

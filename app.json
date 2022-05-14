@@ -8,7 +8,6 @@
     "pages/settings/settings",
     "pages/notice/notice"
   ],
-  
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -16,7 +15,6 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents",
   "tabBar": {
     "custom": true,
     "list": [

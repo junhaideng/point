@@ -1,4 +1,8 @@
 /* pages/gift/gift.wxss */
+.gifts{
+  margin-bottom: 50px;
+}
+
 .gift{
   margin-bottom: 10px;
 }

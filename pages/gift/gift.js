@@ -2,7 +2,8 @@
 import {
   getGifts,
   exchangeGift,
-  removeGifts
+  removeGifts,
+  getTotal
 } from "../../db/index"
 Page({
 
@@ -94,7 +95,8 @@ Page({
                 title: gift.title,
                 point: gift.point * number,
                 remain: total,
-                note: "使用该卡片可进行兑换礼物哦"
+                note: "使用该卡片可进行兑换礼物哦",
+                page: '/pages/index/index'
               }
             }).then(res => {
               console.log(res)

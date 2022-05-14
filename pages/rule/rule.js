@@ -41,6 +41,14 @@ Page({
       })
       return
     }
+    if (content.length > 16){
+      wx.showToast({
+        title: '规则名称不能超过16个字',
+        icon: 'error'
+      })
+      return
+    }
+
     addReward(content, point).then(res => {
       wx.showToast({
         title: '添加成功',
