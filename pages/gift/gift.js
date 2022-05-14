@@ -122,33 +122,33 @@ Page({
     const {
       id,
       index,
-      fileid 
+      fileid
     } = event.target.dataset;
-    if (position == "right"){
-        wx.showModal({
-          content: '确定删除该礼物?',
-          success(res) {
-            if (res.confirm) {
-              removeGifts(id, fileid).then(res => {
-                let gift = that.data.gifts;
-                gift.splice(index, 1)
-                that.setData({
-                  gifts: gift
-                })
-                wx.showToast({
-                  title: '删除成功',
-                })
-              }).catch(err => {
-                wx.showToast({
-                  title: '删除失败',
-                  icon: 'none'
-                })
+    if (position == "right") {
+      wx.showModal({
+        content: '确定删除该礼物?',
+        success(res) {
+          if (res.confirm) {
+            removeGifts(id, fileid).then(res => {
+              let gift = that.data.gifts;
+              gift.splice(index, 1)
+              that.setData({
+                gifts: gift
               })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
+              wx.showToast({
+                title: '删除成功',
+              })
+            }).catch(err => {
+              wx.showToast({
+                title: '删除失败',
+                icon: 'none'
+              })
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
           }
-        })
+        }
+      })
     }
   },
   onPullDownRefresh: function () {
@@ -196,5 +196,7 @@ Page({
         })
       })
     }
-  }
+  },
+  onShareAppMessage: function (options) {},
+  onShareTimeline: function (options) {}
 })

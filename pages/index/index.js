@@ -63,13 +63,13 @@ Page({
     })
 
     getTotal().then(res => {
-      let total = 0 ; 
+      let total = 0;
       const total_list = res.data;
-      if(total_list.length ==0){
+      if (total_list.length == 0) {
         // 添加一个 total 记录用来查询
         addTotal();
-        total = 0 ;
-      }else{
+        total = 0;
+      } else {
         total = total_list[0].total
       }
       this.setData({
@@ -187,5 +187,7 @@ Page({
         })
       })
     }
-  }
+  },
+  onShareAppMessage: function (options) {},
+  onShareTimeline: function (options) {}
 })
