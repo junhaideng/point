@@ -6,7 +6,8 @@
     "pages/rule/rule",
     "pages/log/log",
     "pages/settings/settings",
-    "pages/notice/notice"
+    "pages/notice/notice",
+    "pages/secret/secret"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,8 +18,7 @@
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "custom": true,
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页"
       },

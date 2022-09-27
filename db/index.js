@@ -41,7 +41,7 @@ export function addTotal() {
   return db.collection("summary").add({
     data: {
       valid: true,
-      created_time: new Date(), 
+      created_time: new Date(),
       total: 0,
     }
   })
@@ -57,7 +57,7 @@ export function getTotal() {
 // 更新总分数
 export function updateTotal(total) {
   return db.collection("summary").where({
-    valid: true 
+    valid: true
   }).update({
     data: {
       total: total
@@ -140,10 +140,10 @@ export function increaseGiftCount(id, count = 1) {
 export async function exchangeGift(id, point, number, title) {
   // 首先查询总积分
   const total_list = (await getTotal()).data;
-  let total = 0 ; 
-  if (total_list.length == 0){
+  let total = 0;
+  if (total_list.length == 0) {
     addTotal();
-  }else{
+  } else {
     total = total_list[0].total;
   }
   const sum = point * number;
@@ -160,4 +160,35 @@ export async function exchangeGift(id, point, number, title) {
     res.total = total - sum
   }
   return res
+}
+
+// some secret
+export async function addSecret(secret, password) {
+  return db.collection("secret")
+    .add({
+      data: {
+        secret: secret,
+        password,
+        valid: true,
+        created_time: new Date()
+      }
+    })
+}
+
+export async function getSecret(password) {
+  return db.collection("secret").where({
+    password
+  }).limit(1).get()
+}
+
+export async function existSecret(password) {
+  let data = await db.collection("secret").field({
+    _id: true
+  }).where({
+    password
+  }).limit(1).get();
+  if (data && data.data && data.data.length > 0) {
+    return true
+  }
+  return false
 }
